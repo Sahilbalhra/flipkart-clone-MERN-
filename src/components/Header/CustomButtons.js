@@ -5,7 +5,7 @@ import React from "react";
 const CustomButtons = () => {
   const Wrapper = styled(Box)`
     display: flex;
-    margin: 0 3% 0 auto;
+    margin: 0 0 0 3%;
     & > button,
     & > p,
     & > div {
