@@ -1,4 +1,3 @@
-import { Height } from "@mui/icons-material";
 import { Box, Typography, Button, Divider, styled } from "@mui/material";
 import React from "react";
 import Countdown from "react-countdown";
@@ -21,8 +20,8 @@ const responsive = {
 };
 
 const Component = styled(Box)`
-margin-top;10px;
-background:#ffffff;
+  margin-top: 10px;
+  background: #ffffff;
 `;
 
 const Deal = styled(Box)`
@@ -49,7 +48,6 @@ const ViewAllButton = styled(Button)`
   background-color: #2874f0;
   border-radius: 2px;
   font-size: 13px;
-  font-weight: 600;
 `;
 
 const Image = styled("img")({
@@ -62,7 +60,7 @@ const Text = styled(Typography)`
   margin-top: 5px;
 `;
 
-const Slide = ({ products }) => {
+const Slide = ({ products, title, timer }) => {
   const timerURL =
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg";
 
@@ -78,27 +76,31 @@ const Slide = ({ products }) => {
   return (
     <Component>
       <Deal>
-        <DealText>Deal of the Day</DealText>
-        <Timer>
-          <img src={timerURL} alt="timer" style={{ width: "24px" }} />
-          <Countdown date={Date.now() + 5.04e7} renderer={renderer} />
-        </Timer>
+        <DealText>{title}</DealText>
+        {timer && (
+          <Timer>
+            <img src={timerURL} alt="timer" style={{ width: "24px" }} />
+            <Countdown date={Date.now() + 5.04e7} renderer={renderer} />
+          </Timer>
+        )}
         <ViewAllButton variant="contained" color="primary">
           View All
         </ViewAllButton>
       </Deal>
       <Divider />
       <Carousel
-        responsive={responsive}
         swipeable={false}
         draggable={false}
+        responsive={responsive}
+        centerMode={true}
         infinite={true}
         autoPlay={true}
-        autoPlaySpeed={3000}
+        autoPlaySpeed={10000}
         keyBoardControl={true}
-        centerMode={true}
-        dotListClass="custom-dot-list-style"
+        showDots={false}
         containerClass="carousel-container"
+        // removeArrowOnDeviceType={["tablet", "mobile"]}
+        dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
       >
         {products.map((product) => (
