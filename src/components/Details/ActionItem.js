@@ -3,23 +3,40 @@ import React from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FlashOnIcon from "@mui/icons-material/FlashOn";
 
-const LeftContainer = styled(Box)`
-  min-width: 40%;
-  padding: 40px 0 0 80px;
-`;
+const LeftContainer = styled(Box)(({ theme }) => ({
+  minWidth: "40%",
+  padding: "40px 0 0 80px",
+  [theme.breakpoints.down("md")]: {
+    padding: "20px 40px",
+  },
+}));
+
 const Image = styled("img")({
-  padding:"15px"
+  width: "95%",
+  padding: "15px",
 });
 
-const StyledButton = styled(Button)`
-  width: 48%;
-  height: 50px;
-  border-radius: 2px;
-`;
+const StyledButton = styled(Button)(({ theme }) => ({
+  width: "48%",
+  height: "50px",
+  borderRadius: "2px",
+  [theme.breakpoints.down("lg")]: {
+    width: "46%",
+  },
+  [theme.breakpoints.down("sm")]: {
+    width: "48%",
+  },
+}));
 const ActionItem = ({ product }) => {
   return (
     <LeftContainer>
-      <Box style={{ padding: "15px 20px", border: "1px solid #f0f0f0", width: "90%" }}>
+      <Box
+        style={{
+          padding: "15px 20px",
+          border: "1px solid #f0f0f0",
+          width: "90%",
+        }}
+      >
         <Image src={product.detailUrl} alt="" />
       </Box>
       <StyledButton
