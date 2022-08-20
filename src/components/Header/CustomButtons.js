@@ -5,30 +5,31 @@ import LoginDialog from "../login/LoginDialog";
 import { useContext } from "react";
 import { DataContext } from "../../context/DataProvider";
 import Profile from "./Profile";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled(Box)(({ theme }) => ({
   display: "flex",
   margin: "0 3% 0 auto",
   "& >*": {
-    marginRight: '40px !important',
-    textDecoration: 'none',
-    color: '#FFFFFF',
+    marginRight: "40px !important",
+    textDecoration: "none",
+    color: "#FFFFFF",
     fontSize: 12,
-    alignItems: 'center',
-    [theme.breakpoints.down('sm')]: {
-        color: '#2874f0',
-        alignItems: 'center',
-        display: 'flex',
-        flexDirection: 'column',
-        marginTop: 10
-    }
+    alignItems: "center",
+    [theme.breakpoints.down("sm")]: {
+      color: "#2874f0",
+      alignItems: "center",
+      display: "flex",
+      flexDirection: "column",
+      marginTop: 10,
+    },
   },
-  [theme.breakpoints.down('sm')]: {
-    display: 'block'
-}
+  [theme.breakpoints.down("sm")]: {
+    display: "block",
+  },
 }));
 
-const Container = styled(Box)(({ theme }) => ({
+const Container = styled(Link)(({ theme }) => ({
   display: "flex",
   [theme.breakpoints.down("am")]: {
     display: "block",
@@ -36,18 +37,18 @@ const Container = styled(Box)(({ theme }) => ({
 }));
 
 const LoginButton = styled(Button)(({ theme }) => ({
-  color: '#2874f0',
-  background: '#FFFFFF',
-  textTransform: 'none',
+  color: "#2874f0",
+  background: "#FFFFFF",
+  textTransform: "none",
   fontWeight: 600,
   borderRadius: 2,
-  padding: '5px 40px',
+  padding: "5px 40px",
   height: 32,
-  boxShadow: 'none',
-  [theme.breakpoints.down('sm')]: {
-      background: '#2874f0',
-      color: '#FFFFFF'
-  }
+  boxShadow: "none",
+  [theme.breakpoints.down("sm")]: {
+    background: "#2874f0",
+    color: "#FFFFFF",
+  },
 }));
 
 const CustomButtons = () => {
@@ -69,7 +70,7 @@ const CustomButtons = () => {
         Become a Seller
       </Typography>
       <Typography style={{ marginTop: 3 }}>More</Typography>
-      <Container>
+      <Container to="/cart">
         <ShoppingCartIcon />
         <Typography style={{ marginLeft: 10 }}>Cart</Typography>
       </Container>
