@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 
 import { Box, Typography, styled } from "@mui/material";
@@ -53,10 +54,11 @@ const TotalView = ({ cartItems }) => {
   const totalAmount = () => {
     let price = 0,
       discount = 0;
-    console.log(cartItems);
+    // console.log(cartItems);
+    // eslint-disable-next-line array-callback-return
     cartItems.map((item) => {
-      price += item.price.mrp;
-      discount += item.price.mrp - item.price.cost;
+      price += item.product.price.mrp;
+      discount += item.product.price.mrp - item.product.price.cost;
     });
     setPrice(price);
     setDiscount(discount);

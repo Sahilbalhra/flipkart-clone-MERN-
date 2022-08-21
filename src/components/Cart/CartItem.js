@@ -1,5 +1,4 @@
 import { Card, Box, Typography, Button, styled } from "@mui/material";
-
 import { addEllipsis } from "../../utils/common-utils";
 import GroupButton from "./GroupButton";
 
@@ -42,15 +41,20 @@ const Remove = styled(Button)`
 const CartItem = ({ item, removeItemFromCart }) => {
   const fassured =
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png";
+  // console.log("cart item",item.product.price.mrp);
 
   return (
     <Component>
       <LeftComponent>
-        <img src={item.url} style={{ height: 110, width: 110 }} alt="" />
+        <img
+          src={item.product.url}
+          style={{ height: 110, width: 110 }}
+          alt=""
+        />
         <GroupButton />
       </LeftComponent>
       <Box style={{ margin: 20 }}>
-        <Typography>{addEllipsis(item.title.longTitle)}</Typography>
+        <Typography>{addEllipsis(item.product.title.longTitle)}</Typography>
         <SmallText>
           Seller:RetailNet
           <span>
@@ -58,14 +62,19 @@ const CartItem = ({ item, removeItemFromCart }) => {
           </span>
         </SmallText>
         <Typography style={{ margin: "20px 0" }}>
-          <Cost component="span">₹{item.price.cost}</Cost>&nbsp;&nbsp;&nbsp;
+          <Cost component="span">₹{item.product.price.cost}</Cost>
+          &nbsp;&nbsp;&nbsp;
           <MRP component="span">
-            <strike>₹{item.price.mrp}</strike>
+            <strike>₹{item.product.price.mrp}</strike>
           </MRP>
           &nbsp;&nbsp;&nbsp;
-          <Discount component="span">{item.price.discount} off</Discount>
+          <Discount component="span">
+            {item.product.price.discount} off
+          </Discount>
         </Typography>
-        <Remove onClick={() => removeItemFromCart(item.id)}>Remove</Remove>
+        <Remove onClick={() => removeItemFromCart(item.product.id)}>
+          Remove
+        </Remove>
       </Box>
     </Component>
   );

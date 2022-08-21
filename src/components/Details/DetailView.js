@@ -35,7 +35,7 @@ const DetailView = () => {
     if (product && id !== product.id) dispatch(getProductDetails(id));
   }, [dispatch]);
 
-  // console.log(product.product);
+  // console.log(product);
 
   return (
     <Component>

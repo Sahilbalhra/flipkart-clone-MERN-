@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { Box, Typography, Button, Grid, styled } from "@mui/material";
+import { Box, Typography, Grid,Button, styled } from "@mui/material";
 import { useParams } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -10,8 +10,8 @@ import TotalView from "./TotalView";
 import EmptyCart from "./EmptyCart";
 import CartItem from "./CartItem";
 
-// import { post } from '../../utils/paytm';
-// import { payUsingPaytm } from '../../service/api';
+import { post } from '../../utils/payment';
+import { payUsingPaytm } from '../../service/api';
 
 const Component = styled(Grid)(({ theme }) => ({
   padding: "30px 135px",
@@ -40,21 +40,21 @@ const BottomWrapper = styled(Box)`
   border-top: 1px solid #f0f0f0;
 `;
 
-// const StyledButton = styled(Button)`
-//   display: flex;
-//   margin-left: auto;
-//   background: #fb641b;
-//   color: #fff;
-//   border-radius: 2px;
-//   width: 250px;
-//   height: 51px;
-// `;
+const StyledButton = styled(Button)`
+  display: flex;
+  margin-left: auto;
+  background: #fb641b;
+  color: #fff;
+  border-radius: 2px;
+  width: 250px;
+  height: 51px;
+`;
 
 const Cart = () => {
   const cartDetails = useSelector((state) => state.cart);
   const { cartItems } = cartDetails;
   const { id } = useParams();
-
+  // console.log("cartItems", cartItems);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -66,14 +66,14 @@ const Cart = () => {
     dispatch(removeFromCart(id));
   };
 
-  // const buyNow = async () => {
-  //     let response = await payUsingPaytm({ amount: 500, email: 'codeforinterview01@gmail.com'});
-  //     var information = {
-  //         action: 'https://securegw-stage.paytm.in/order/process',
-  //         params: response
-  //     }
-  //     post(information);
-  // }
+  const buyNow = async () => {
+      let response = await payUsingPaytm({ amount: 500, email: 'codeforinterview01@gmail.com'});
+      var information = {
+          action: 'https://securegw-stage.paytm.in/order/process',
+          params: response
+      }
+      post(information);
+  }
 
   return (
     <>
@@ -86,10 +86,16 @@ const Cart = () => {
               </Typography>
             </Header>
             {cartItems.map((item) => (
-              <CartItem item={item} removeItemFromCart={removeItemFromCart} />
+              <CartItem
+                item={item}
+                key={item.product.id}
+                removeItemFromCart={removeItemFromCart}
+              />
             ))}
             <BottomWrapper>
-              {/* <StyledButton onClick={() => buyNow()} variant="contained">Place Order</StyledButton> */}
+              <StyledButton 
+              onClick={() => buyNow()}
+               variant="contained">Place Order</StyledButton>
             </BottomWrapper>
           </LeftComponent>
           <Grid item lg={3} md={3} sm={12} xs={12}>
